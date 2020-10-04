@@ -10,10 +10,9 @@ resource "aws_instance" "web" {
   user_data              = file("template/user_data.sh")
   instance_count         = "var.instance_count"
 
-
-  tags {
-    Name = "hello-world-web"
-  }
+ # tags {
+ #   Name = "hello-world-web"
+ # }
 }
 
 resource "aws_security_group" "web" {
