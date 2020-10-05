@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_instance" "web" {
 
-  ami           = "lookup(var.ami,var.aws_region)"
+  ami           = var.ami
   instance_type = "t2.micro"
   security_groups = [aws_security_group.ssh_http.name]
   user_data              = file("template/user_data.sh")
