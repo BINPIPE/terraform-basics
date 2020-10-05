@@ -6,7 +6,7 @@ resource "aws_instance" "web" {
 
   ami           = "lookup(var.ami,var.aws_region)"
   instance_type = "t2.micro"
-  security_groups = ["web"]
+  security_groups = [aws_security_group.ssh_http.name]
   user_data              = file("template/user_data.sh")
   count         = var.instance_count
 
@@ -15,11 +15,26 @@ resource "aws_instance" "web" {
  # }
 }
 
-resource "aws_security_group" "web" {
+resource "aws_security_group" "ssh_http" {
+  name        = "ssh_http"
+  description = "Allow SSH and HTTP"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
