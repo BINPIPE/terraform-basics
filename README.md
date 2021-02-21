@@ -1,4 +1,4 @@
- Terraform-Basics 
+ Terraform-Basics   |[![BINPIPE](https://img.shields.io/badge/YouTube-red.svg)](https://www.youtube.com/channel/UCPTgt4Wo0MAnuzNEEZlk90A)
 ========
 
 //Resources to Learn Terraform (Infrastructure-As-Code)
